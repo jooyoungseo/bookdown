@@ -243,7 +243,7 @@ gitbook_config = function(config = list()) {
   config = utils::modifyList(default, config, keep.null = TRUE)
   # remove these TOC config items since we don't need them in JavaScript
   config$toc$before = NULL; config$toc$after = NULL
-  config = sprintf('gitbook.start(%s);', xfun::tojson(config))
+  config = sprintf('gitbook.start(%s);', gsub('[^[:print:]]', '', xfun::tojson(config)))
   paste(
     '<script>', 'gitbook.require(["gitbook"], function(gitbook) {', config, '});',
     '</script>', sep = '\n'
